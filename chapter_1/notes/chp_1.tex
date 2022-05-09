@@ -210,4 +210,94 @@ Here is the list with all the 53 reserved words:
 \end{itemize}
 
 \textbf{JAVA CONVENTION: CamelCase} : Java has conventions so that code is readable and consistent. This consistency includes CamelCase. In CamelCase, each word begins with an uppercase letter. This makes multiple-word variable names easier to read (e.g. ThisIsCamelCaseNaming).
+
+\subsection{variables}
+Types of variables:
+\begin{itemize}
+	\item local
+	\item instance
+	\item class
+\end{itemize}
+
+
+\textbf{Local Variable} : A local variable is a variable defined whithin a method. Local variables must be initialized before use. They do not have a default value and contain garbage data until initialized. The compiler will not let you read an uninitialized value.
+
+\textbf{Instance Variable (field)} : Variables that are not local variables are known as instance variables or class variables. Instance variables are also called fields.
+
+\textbf{Class Variable} : Class variables are shared cross multiple objects. You can tell a variable is a class variable because it has the keyword static before it.
+
+Instance and class variable do not require you to initialize them. As soon as you declare these variables, they are given a default value.
+
+
+\begin{tabular}{|c|c|}
+	\cline{1-2}
+	    Variable Type & Default Initialization value \\
+	\cline{1-2}
+	    boolean & false \\
+	    byte, short, int, long & 0 \\
+	    float, double & 0.0 \\
+	    char & '\u0000' (NUL) \\
+	    All object references (everything else) & null \\
+
+	\cline{1-2}
+\end{tabular}
+
+Note: A method parameter is a local variable.
+Local variables can never have a scope larger than the method they are defined in. However, they can have a smaller scope.
+
+\textbf{Variable Scopes} :
+\begin{itemize}
+	\item Local variables - in scope from declarationn to end of block.
+	\item Instance variables - in scope from declaration until object garbage collected.
+	\item Class variables - in scope from declaration until program ends.
+\end{itemize}
+
+
+\section{Ordering Elements in a Class}
+\begin{tabular}{|c|c|c|c|}
+	\cline{1-4}
+	Element & Example & Required? & Where does it go? \\
+	\cline{1-4}
+	Package Declaration & package abc; & No & First line in the file \\
+	Import statements & import java.util.*; & No & Immediately after the package \\
+	Class declaration & public class C & Yes & Immediately after the import \\
+	Field declarations & int value; & No & Anywhere inside a class \\
+	Method declarations & void method() & No & Anywhere inside a class \\
+	\cline{1-4}
+\end{tabular}
+
+PIC: Package, Import, Class
+
+Multiple classes can be dfined in the same file, but only one of them is allowed to be public. The public class must match the name of the file.
+
+\section{Destroying Objects}
+Java automatically takes care of that for you. Java provides a garbage collector to automatically look for objeects that arent't needed anymore.
+All Java objects are stored in your program memory's heap. The ehap, which is also referred to as the free store, represents a large pool of unused memory allocated to your Java application.
+\subsection{Garbage Collection}
+Garbage collection refers to the process of automatically freeing memory on the heap by deleting objects that are no longer reachable in your program.
+You need to know that System.gc() is not guaranteed to run, and you should be able to recognize when objects become eligible for garbage collection.
+When calling System.gc() we are merely suggesting Java to kick off a garbage collection run. Java is free to ignore the request.
+An object will remain in the heap until it is no longer reachable. An object is no longer reachable when one of two situations occurs:
+\begin{itemize}
+	\item The object no longer has any references pointing to it.
+	\item All references to the object have gone out of scope.
+\end{itemize}
+
+\subsection{finalize()}
+Java allows objects to implement a method called finalize() that might get called. This method gets called if the garbage collector tries to collect the object. If the garbage collector doesn't run, the method doesn't get called. If the garbage collector fails to collect the object and tries to run it again later, the method doesn't get called a second time.
+Keep in mind that it might not get called and that it definitely won't be called twice.
+finalize() call could run zero or one time. finalize() is only run when the object is eligible for garbage collection.
+
+\section{Benefits of Java}
+Java has some key benefits:
+\begin{itemize}
+	\item \textbf{Object Oriented} 
+	\item \textbf{Encapsulation} 
+	\item \textbf{Platform Independent} 
+	\item \textbf{Robust} 
+	\item \textbf{Simple} 
+	\item \textbf{Secure} 
+\end{itemize}
+
+
 \end{document}
