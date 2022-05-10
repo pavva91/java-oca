@@ -1,0 +1,149 @@
+\documentclass{article}
+
+\author{Bob}
+\title{Chapter 2 - Operators and Statements}
+
+\begin{document}
+
+\maketitle
+
+\section{Java Operators}
+\textbf{Java Operator} : A Java operator is a special symbol that can be applied to a set of variables, values, or literals - referred to as operands - and that returns a result.
+
+\textbf{Types of Java Operators} : There are three flavors of operators available in Java: 
+\begin{itemize}
+	\item unary
+	\item binary
+	\item ternary
+\end{itemize}
+
+\subsection{Order of Operation}
+Unless overridden with parentheses, Java operators follow \emph{order of operation}, listed in this table by decreasing order of \emph{operator precedence}. If two operators have the same level of precedence, then Java guarantees left-to-right evaluation.
+
+\begin{tabular}{|c|c|}
+	\cline{1-2}
+	Operator & Symbols and examples \\
+	\cline{1-2}
+	Post-unary operators & expression++, expression-- \\
+	Pre-unary operators & ++expression, --expression \\
+	Other unary operators & ~,+,-,! \\
+	Multiplication/Division/Modulus & *,/,\% \\
+	Addition/Subtraction & +,- \\
+	Shift operators & <<,>>,>>> \\
+	Relational operators & <,>,<=,>=, instanceof \\
+	Equal to/not equal to & ==, != \\
+	Logical operators & \&,\^,| \\
+	Short-circuit logical operators & \&\&,|| \\
+	Ternary operators & boolean expression ? expression1 : expression2 \\
+	Assignment operators & =,+=,-=,*=,/=,\%=,\&=, \^=, |=, <<=, >>=, >>>= \\
+	\cline{1-2}
+\end{tabular}
+
+
+\subsection{Binary Operators}
+\subsubsection{Arithmetic Operators}
+All of the arithmetic operators may be applied to any Java primitives, except \emph{boolean} and \emph{String}. Furthermore, only the addition operators + and += may be applied to String values, whcih results in String concatenation.
+
+\subsubsection{Numeric Promotion}
+\begin{enumerate}
+	\item If two values have different data types, Java will automatically promote one of the values to the larger of the two data types.
+	\item If one of the values is integral and the other is floating-point, Java will automatically promote the integral value to the floating-point value's data type.
+	\item Smaller data types, namely \emph{byte}, \emph{short} and \emph{char}, are first promoted to \emph{int} any time they're used with a Java binary arithmetic operator, even if neither of the operands is \emph{int}.
+	\item After all promotion has occurred and the operands have the same data type, the resulting value will have the same data type as its promoted operands.
+\end{enumerate}
+
+Note: Unary operators are excluded from this rule.
+
+\subsection{Unary Operators} 
+\textbf{Unary Operator} : A unary operator is onen that requires exactly one operand, or variable, to function.
+
+\begin{tabular}{|c|c|}
+	\cline{1-2}
+	Unary Operator & Description \\
+	\cline{1-2}
+	+ & Indicates a number is positive, although numbers are assumed to be positive in Java \\
+	- & Indicates a literal number is negative or negate an expression \\
+	++ & Increments a value by 1 \\
+	-- & Decrements a value by 1 \\
+	! & Inverts a Boolean's logical value \\
+	\cline{1-2}
+\end{tabular}
+
+\textbf{Negation Operator (-)} : Reverses the sign of a numeric expression.
+\textbf{Logical Complement Operator (!)} : Flips the value of a boolean expression.
+
+Note: Unlike some other programming languages, in Java \emph{1} and \emph{true} are not related in any way, just as \emph{0} and \emph{false} are not related.
+
+\textbf{Increment and Decrement Operators (++, --)} : Increment and decrement operators, ++ and --, respectively, can be appied to numeric operands and have the higher order or precedence, as compared to binary operators. In other words, they often get applied first to an expression.
+
+\subsection{Additional Binary Operators}
+
+\subsubsection{Assignment Operator} 
+An \emph{assignment operator} is a binary operator that modifies, or assigns, the variable on the left-hand side of the operator, with the result of the value on the right-hand side of the equation.
+
+Note: \textbf{Java will automatically promote from smaller to larger data types}, but it will throw a compiler exception if it detects you are trying to convert from larger to smaller data types.
+
+\subsubsection{Casting Primitive Values}
+Casting primitives is required any time you are going from a larger numerical data type to a smaller numerical data type, or converting from a floating-point number to an integral value.
+By performing this \textbf{explicit cast} of a larger value into a smaller dat type, you are instructing the compiler to ignore its default behavior. You are telling the compiler that you have taken additional steps to prevent overflow or underflow.
+
+\textbf{Overflow and Underflow} : \emph{Overflow} is when a number is so large that it will no longer fit within the data type, so the system "wraps around" to the next lowest value and counts up from there. There's also an analogous \emph{underflow}, when the number is too low to fit in the data type.
+
+\subsubsection{Compound Assignment Operators}
+Besides the simple assignment operator, =, there are also numerous \emph{compound assignment operators}. 
+Complex operators are really just glorified forms of the simple assignment operator, with a built-in arithmetic or logical operation that applies the left- and right-hand sides of the statement and stores the resulting value in a variable in the left-hand side of the statement.
+The lef-hand side of the compound operator can only be applied to a variable that is already defined and cannot be used to declare a new variable.
+
+\subsubsection{Relational Operators}
+Relational operators compare two expressions and return a \emph{boolean} value. If the two numeric operands are not of the same data type, the smaller one is promoted in the manner as previously discussed.
+
+\begin{tabular}{|c|c|}
+	\cline{1-2}
+	Operator & Description \\
+	\cline{1-2}
+	< & Strictly less than \\
+	<= & Less than or equal to \\
+	> & Strictly greater than \\
+	>= & Greater than or equal to \\
+	\cline{1-2}
+\end{tabular}
+
+\subsubsection{Logical Operators (\&, | and \^)}
+The \emph{logical operators}, (\&), (|), and (\^), may be applied to both \emph{numeric} and \emph{boolean} data types, they're referred to as \emph{logical operators}. 
+Alternatively, when they're applied to \emph{boolean} data types, they're referred to as \emph{bitwise operators}, as they perform bitwise comparisons of the bits that compose the number.
+\subsubsection{Truth Tables}
+\textbf{x \& y (AND)}
+\begin{tabular}{|c|c|c|}
+	\cline{1-3}
+	--- & y = true & y = false \\
+	\cline{1-3}
+	x = true & true & false \\
+	\cline{1-3}
+	x = false & false & false \\
+	\cline{1-3}
+\end{tabular}
+
+\textbf{x | y (INCLUSIVE OR)}
+\begin{tabular}{|c|c|c|}
+	\cline{1-3}
+	--- & y = true & y = false \\
+	\cline{1-3}
+	x = true & true & true \\
+	\cline{1-3}
+	x = false & true & false \\
+	\cline{1-3}
+\end{tabular}
+
+\textbf{x \^ y (EXCLUSIVE OR)}
+\begin{tabular}{|c|c|c|}
+	\cline{1-3}
+	--- & y = true & y = false \\
+	\cline{1-3}
+	x = true & false & true \\
+	\cline{1-3}
+	x = false & true & false \\
+	\cline{1-3}
+\end{tabular}
+\subsection{Shortcut Operators (\&\& and ||)}
+The short-circuit operators are nearly identical to the logical operators, \& and |, respectively, except that \textbf{the right-hand side of the expression may never be evaluated if the final result can be determined by the left-hand side of the expression.}
+\end{document}
