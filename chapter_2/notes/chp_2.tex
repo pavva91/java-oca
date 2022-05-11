@@ -1,5 +1,27 @@
 \documentclass{article}
+\usepackage{listings}
+\usepackage{color}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+language=Java,
+aboveskip=3mm,
+belowskip=3mm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\small\ttfamily},
+numbers=none,
+numberstyle=\tiny\color{gray},
+keywordstyle=\color{blue},
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3
+}
 \author{Bob}
 \title{Chapter 2 - Operators and Statements}
 
@@ -146,4 +168,72 @@ Alternatively, when they're applied to \emph{boolean} data types, they're referr
 \end{tabular}
 \subsection{Shortcut Operators (\&\& and ||)}
 The short-circuit operators are nearly identical to the logical operators, \& and |, respectively, except that \textbf{the right-hand side of the expression may never be evaluated if the final result can be determined by the left-hand side of the expression.}
+
+\subsection{Equality Operators}
+Determining equality in Java can be a nontrivial endeavor as ther's a semantic difference between "two objects are the same" and "two objects are equivalent". It is further complicated by the fact that for numeric and boolean primitives, there is no such distinction.
+
+The \emph{equals} operator \emph{==} and \emph{not equals} operator \emph{!=}. Like the relational operators, they compare two operands and return a boolean value about whether the expressions or values are equal, or not equal, respectively.
+The equality operators are used in one of three scenarios:
+\begin{enumerate}
+	\item Comparing two numeric primitive types. If the numeric values are of different data types, the values are automatically promoted.
+	\item Comparing two \emph{boolean} values.
+	\item Comparing two objects, including \emph{null} and \emph{String} values.
+\end{enumerate}
+
+Note: Pay close attention to the data types when you see an equality operator on the exam. (= vs ==)
+
+For object comparison, the equality operator is applied to the references to the objects, not the objects they point to. Two references are equal if and only if they point to the same object, or both point to \emph{null}. (objectA == objectB vs objectA.equals(objectB).
+\section{Java Statements}
+\textbf{Java Statement} : is a complete unit of execution in Java, terminated with a semicolon (;).
+
+\textbf{Control Flow Statement} : Break up the flow of execution byusing decision making, looping, and branching, allowing the application to selectively execute particular segments of code.
+
+\textbf{Block of Code} : is a group of zero or more statements between balanced braces ({}), and can be used anywhere a single statement is allowed.
+
+\textbf{Decision making control structures}:
+\begin{itemize}
+	\item if-then
+	\item if-then-else
+	\item switch
+\end{itemize}
+
+\textbf{Repetition control structures}:
+\begin{itemize}
+	\item for
+	\item for-each
+	\item while
+	\item do-while
+\end{itemize}
+
+
+\subsection{The if-then statement}
+The \emph{if-then} statement execute a block of code under certain circumstances, by allowing our application to execute a particular block of code if and only if a \emph{boolean} expression evalueates to true at runtime.
+
+\begin{lstlisting}
+if(booleanExpression) {
+	// Branch if true
+}
+
+\end{lstlisting}
+
+For readability, it is considered good coding practice to put blocks around the execution component of \emph{if-then} statements, as well as many other control flow statements, although it is not required.
+
+Note: In Java tabs are just whitespace and are not evaluated as part of the execution.
+
+\subsection{The if-then-else statemnt}
+
+\begin{lstlisting}
+if(booleanExpression) {
+	// Branch if true
+} else {
+	// Branch if false
+}
+\end{lstlisting}
+
+\subsection{The switch statement}
+\subsection{The while statement}
+\subsection{The do-while statement}
+\subsection{The for statement}
+\subsection{The for-each statement}
+
 \end{document}
