@@ -230,10 +230,149 @@ if(booleanExpression) {
 }
 \end{lstlisting}
 
+Note: In Java \emph{0} and \emph{1} are not considered \emph{boolean} values.
+
+\subsubsection{Ternary Operator}
+The conditional operator \textbf{? :} otherwise known as \emph{ternary operator}, is the only operator that takes three operands and is of the form:
+\begin{lstlisting}
+booleanExpression ? expression1 : expression2
+\end{lstlisting}
+The first operand must be a \emph{boolean} expression, and the second and third can be any expression that returns a value.
+The ternary operation is really a condensed form of an \emph{if-then-else} statement that returns a value.
+These 2 snippets of code are identical:
+With \textbf{if-then-else}:
+\begin{lstlisting}
+int y = 10;
+int x;
+if(y > 5) {
+	x = 2 * y;
+} else {
+	x = 3 * y;
+}
+\end{lstlisting}
+
+With \textbf{Ternary Operator}:
+\begin{lstlisting}
+int y = 10;
+int x = (y > 5) ? (2 * y) : (3 * y);
+\end{lstlisting}
+Note: add parentheses around the expressions in ternary operations is helpful for readability, although not required.
+There is no requirement that second and third expressions in ternary operations have the same data types, although it may come into play when combined with the assignment operator.
+\textbf{Ternary Expression Evaluation}: Only one of the right-hand expressions of the ternary operator will be evaluated at runtime. In a manner similar to the short-circuit operators, if one of the two right-hand expressions in a ternary operator performs a side effect, then it may not be applied at runtime.
+\begin{lstlisting}
+int y = 1;
+int z = 1;
+final int i = y<10 ? y++ : z++;
+System.out.println(y + "," + z); // Outputs 2,1
+\end{lstlisting}
+
 \subsection{The switch statement}
+A \emph{switch} statement is a complex decision-making structure in which a single value is evaluated and flow is redirected to the first matching branch, known as a \emph{case} statement. If no such case statement is found that matches the value, an optional \emph{default} statement will be called. If no such \emph{default} option is available, the entire switch statement will be skipped.
+\subsubsection{Supported Data Types}
+A \emph{switch} statement has a target variable that is not evaluated until runtime. Prior to Java 5.0, this variable could only be 
+\emph{int} values or those values that could be promoted to \emph{int}, specifically \emph{byte}, \emph{short}, or \emph{int}. In Java 7, \emph{switch} statements were further updated to allow matching on \emph{String} values. Finally, the switch statement also supports any of the primitve numeric wrapper classes, such as \emph{Byte}, \emph{Short}, \emph{Character}, or \emph{Integer}.
+
+\begin{lstlisting}
+switch(variableToTest) {
+	case constantExpression1:
+		// Branch for case1;
+		break;
+
+	case constantExpression2:
+		// Branch for case2;
+		break;
+
+	...
+
+	default:
+		// Branch for default;
+}
+\end{lstlisting}
+
+Data Types supported by \emph{switch} statements include the following:
+\begin{itemize}
+	\item \emph{byte} and \emph{Byte}
+	\item \emph{short} and \emph{Short}
+	\item \emph{char} and \emph{Character}
+	\item \emph{int} and \emph{Integer}
+	\item \emph{String}
+	\item \emph{enum} values
+\end{itemize}
+Note that \emph{boolean} and \emph{long}, and their associated wrapper classes, are not supported by \emph{switch} statements.
+\textbf{RULE SWITCH: No boolean, No long}
+
+\subsubsection{Compile-time Constant Values}
+The values in each \emph{case} statement must be compile-time constant values of the same data type as the \emph{switch} value. This means that you can use only:
+\begin{itemize}
+	\item literals
+	\item \emph{enum} constants
+	\item \emph{final} constant variables of the same data type. By final constant, we mean that the variable must be marked with the \emph{final} modifier and initialized with a literal value in the same expression in which it is declared.
+\end{itemize}
+\textbf{Break Statement}: There is a \emph{break} statement at the end of each \emph{case} and \emph{default} section. Break statements terminate the \emph{switch} statement and return flow control to the enclosing statement. If you leave out the \emph{break} statement, flow will continue to the next proceeding \emph{case} or \emph{default} block automatically.
+Note: There is no requirement that the \emph{case} or \emph{default} statements be in a particular order.
+Note: \emph{The exam creators are fond of switch examples that are missing break statements.}
+The data type for \emph{case} statements must all match the data type of the \emph{switch} variable.
+
+\textbf{Exit switch}:
+\begin{itemize}
+	\item break
+	\item return
+\end{itemize}
+
 \subsection{The while statement}
+A repetition control structure, which we refer to as a \emph{loop}, executes a statement of code multiple times in succession.
+\begin{lstlisting}
+while{booleanExpression) {
+	// Body
+}
+\end{lstlisting}
+
+During execution, the \emph{boolean} expression is evaluated before each iteration of the loop and exits if the evaluation returns false.
+
 \subsection{The do-while statement}
+Unlike a \emph{while} loop, though, a \emph{do-while} loop guarantees that the statement or block will be executed at least once.
+Note: Any \emph{while} loop can be converted to a \emph{do-while} loop and viceversa.
+Java recommends you sue a \emph{while} loop when a loop might not be executed at all an a \emph{do-while} loop when the llop is executed at least once.
+
 \subsection{The for statement}
+A basic \emph{for loop} has the same conditional \emph{boolean} expression and statement, or block of statements, as the other loops you have seen, as well as two new sections: an \emph{initialization block} and an \emph{update} statement.
+
+\begin{lstlisting}
+for(initialization; booleanExpression; updateStatement) {
+	// Body
+}
+\end{lstlisting}
+Note that each section is separated by a semicolon. The initialization and update sections may contain multiple statements, separated by commas.
+\textbf{Infinite for loop}:
+\begin{lstlisting}
+for( ; ; ) {
+	// Body
+}
+\end{lstlisting}
+The components of the \emph{for} loop are each optional. The semicolons separating the three sections are required.
+The variables in the initialization block must all be of the same type.
 \subsection{The for-each statement}
+Starting with Java 5.0, Java developers have had a new type of enhanced for loop at their disposal, one specifically designed for iterating over arrays and \emph{Collection} objects.
+\begin{lstlisting}
+for(datatype instance : collection) {
+	// Body
+}
+\end{lstlisting}
+
+The right-hand side of the \emph{for-each} loop statement must be a built-in Java array or an object whose class implements \emph{java.lang.Iterable}, which includes most of the Java \emph{Collections} framework.
+The left-hand side of the \emph{for-each} loop must include a declaration for an instance of a variable, whose type matches the type of a member of the array or collection in the right-hand side of the statement.
+
+\textbf{Collections for OCA Exam}: The only member of the \emph{Collections} framework that you need to be aware of are:
+\begin{itemize}
+	\item \emph{List}
+	\item \emph{ArrayList}
+\end{itemize}
+
+Note: When you see a \emph{for-each} loop on the exam, make sure the right-hand side is an array or \emph{Iterable} object and the left-hand side has a matching type.
+
+\textbf{Problem for-each}: While the \emph{for-each} statement is convenient for working with lists in many cases, it does hide access to the loop iterator variable.
+
+As a developer you can always revert to a standard \emph{for} loop if you need fine-grain control.
+
 
 \end{document}
