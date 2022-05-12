@@ -374,5 +374,64 @@ Note: When you see a \emph{for-each} loop on the exam, make sure the right-hand 
 
 As a developer you can always revert to a standard \emph{for} loop if you need fine-grain control.
 
+\section{Advanced Flow Control}
+Advanced flow controls:
+\begin{itemize}
+	\item Nested Loops
+	\item Optional Labels
+	\item The \emph{break} statement
+	\item The \emph{continue} statement
+\end{itemize}
+\subsection{Nested Loops}
+Loops can contain other loops.
+\subsection{Optional Labels}
+A \emph{label} is an optional pointer to the head of a statement that allows the application flow to jump to it or break from it. It is a single word that is proceeded by a colon (:).
+Example:
+\begin{lstlisting}
+int[][] array = {{1,2},{3,4}};
+OUTER_LOOP: for(int[] simpleArray : array) {
+	INNER_LOOP: for(int i = 0; i<simpleArray.length; i++) {
+		System.out.print(simpleArray[i]);
+	}
+	System.out.println();
+}
+\end{lstlisting}
+Optional labels are often only used in loop structures. It is rarely considered a good coding practice.
+For readability, they are commnly expressed in uppercase, with underscores between words, to distinguish them from regular variables.
+\subsection{The \emph{break} statement}
+A \emph{break} statement transfers the flow of control out to the enclosing statement.
+\begin{lstlisting}
+OPTIONAL_LABEL: while(booleanExpression) {
+	// Body
+
+	// Somewhere in loop
+	break OPTIONAL_LABEL;
+}
+\end{lstlisting}
+Notice that the \emph{break} statement can take an optional label parameter. Without a label parameter, the \emph{break} statement will terminate the nearest inner loop it is currently in the process of executing. The optional label parameter allows us to break out of a higher level outer loop.
+\subsection{The \emph{continue} statement}
+The \emph{continue} statement causes flow to finish the execution of the current loop.
+\begin{lstlisting}
+OPTIONAL_LABEL: while(booleanExpression) {
+	// Body
+
+	// Somewhere in loop
+	continue OPTIONAL_LABEL;
+}
+\end{lstlisting}
+The syntax of the \emph{continue} statement mirrors that of the \emph{break} statement.
+While the \emph{break} statement transfers control to the enclosing statement, the \emph{continue} statement transfers control to the \emph{boolean} expression that determines if the loop should continue. In other words, it ends the current iteration of the loop.
+
+\begin{tabular}{|c|c|c|c|}
+	\cline{1-4}
+	--- & Allows optional labels & Allows unlabeled break & Allows continue statement \\
+	\cline{1-4}
+	if & Yes & No & No \\
+	while & Yes & Yes & Yes \\
+	do-while & Yes & Yes & Yes \\
+	for & Yes & Yes & Yes \\
+	switch & Yes & Yes & No \\
+	\cline{1-4}
+\end{tabular}
 
 \end{document}
